@@ -1,4 +1,4 @@
-module example/web-service-gin
+module gin-go-api
 
 go 1.20
 

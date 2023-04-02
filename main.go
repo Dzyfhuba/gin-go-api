@@ -1,4 +1,5 @@
 package main
+
 import (
 	"net/http"
 
@@ -28,6 +29,8 @@ func getAlbums(c *gin.Context) {
 func main() {
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
+
+	router.GET("/books", books.getBooks)
 
 	router.Run("localhost:8080")
 }
