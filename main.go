@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	books "github.com/Dzyfhuba/gin-go-api/App/Controllers/BooksControllers"
 )
 
 // album represents data about a record album.
