@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	books "github.com/Dzyfhuba/gin-go-api/App/Controllers/BooksControllers"
+	// "github.com/Dzyfhuba/gin-go-api/App/BooksController"
 )
 
 // album represents data about a record album.
@@ -31,7 +31,7 @@ func main() {
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
 
-	router.GET("/books", books.getBooks)
+	// router.GET("/books", BooksController.index)
 
-	router.Run("localhost:8080")
+	router.Run("localhost:4000")
 }

@@ -1,4 +1,4 @@
-package Controller
+package BooksController
 
 import (
 	"net/http"
@@ -20,6 +20,6 @@ var books = []book{
 	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
 }
 
-func getBooks(c *gin.Context) {
+func index(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, books)
 }
