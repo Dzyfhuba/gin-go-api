@@ -1,9 +1,9 @@
-package App
+package main
 
 import (
 	"net/http"
 
-	BooksController "github.com/Dzyfhuba/gin-go-api/BooksController"
+	"github.com/Dzyfhuba/gin-go-api/App/BooksController"
 	"github.com/gin-gonic/gin"
 )
 
