@@ -3,16 +3,20 @@ package main
 import (
 	"net/http"
 
-	"github.com/Dzyfhuba/gin-go-api/App/BooksController"
+	"github.com/Dzyfhuba/gin-go-api/Controllers"
+	_ "github.com/Dzyfhuba/gin-go-api/model"
+	_ "github.com/Dzyfhuba/gin-go-api/docs"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // album represents data about a record album.
 type album struct {
 	ID     string  `json:"id"`
-	Title  string  `json:"title"`
 	Artist string  `json:"artist"`
 	Price  float64 `json:"price"`
+	Title  string  `json:"title"`
 }
 
 // albums slice to seed record album data.
@@ -27,11 +31,33 @@ func getAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, albums)
 }
 
+//	@BasePath	/
+
+//	@Schemes
+//	@Description	root for network test
+//	@Tags root
+//	@Accept json
+//	@Success 200 {object} model.HelloWorld
+//	@Router			/ [get]
+func helloWorld(ctx *gin.Context) {
+	ctx.IndentedJSON(http.StatusOK, gin.H{
+		"hello": "world",
+	})
+}
+
 func main() {
 	router := gin.Default()
+	
+	router.GET("/", helloWorld)
+
 	router.GET("/albums", getAlbums)
+	router.GET("/books", Controllers.BooksController)
+	
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler,
+		ginSwagger.URL("http://localhost:8080/swagger/doc.json"),
+		ginSwagger.DefaultModelsExpandDepth(-1)))
+	
 
-	router.GET("/books", App.index)
 
-	router.Run("localhost:4000")
+	router.Run(":8080")
 }

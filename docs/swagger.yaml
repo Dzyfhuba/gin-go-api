@@ -1,0 +1,24 @@
+basePath: /
+definitions:
+  model.HelloWorld:
+    properties:
+      hello:
+        example: world
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: root for network test
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.HelloWorld'
+      tags:
+      - root
+swagger: "2.0"

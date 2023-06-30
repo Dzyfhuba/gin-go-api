@@ -1,0 +1,39 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "basePath": "/",
+    "paths": {
+        "/": {
+            "get": {
+                "description": "root for network test",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "root"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.HelloWorld"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.HelloWorld": {
+            "type": "object",
+            "properties": {
+                "hello": {
+                    "type": "string",
+                    "example": "world"
+                }
+            }
+        }
+    }
+}
