@@ -3,9 +3,9 @@ package main
 import (
 	"net/http"
 
-	"github.com/Dzyfhuba/gin-go-api/Controllers"
-	_ "github.com/Dzyfhuba/gin-go-api/model"
+	"github.com/Dzyfhuba/gin-go-api/controllers"
 	_ "github.com/Dzyfhuba/gin-go-api/docs"
+	_ "github.com/Dzyfhuba/gin-go-api/model"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -33,12 +33,12 @@ func getAlbums(c *gin.Context) {
 
 //	@BasePath	/
 
-//	@Schemes
-//	@Description	root for network test
-//	@Tags root
-//	@Accept json
-//	@Success 200 {object} model.HelloWorld
-//	@Router			/ [get]
+// @Schemes
+// @Description	root for network test
+// @Tags root
+// @Accept json
+// @Success 200 {object} model.HelloWorld
+// @Router			/ [get]
 func helloWorld(ctx *gin.Context) {
 	ctx.IndentedJSON(http.StatusOK, gin.H{
 		"hello": "world",
@@ -47,17 +47,15 @@ func helloWorld(ctx *gin.Context) {
 
 func main() {
 	router := gin.Default()
-	
+
 	router.GET("/", helloWorld)
 
 	router.GET("/albums", getAlbums)
 	router.GET("/books", Controllers.BooksController)
-	
+
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler,
 		ginSwagger.URL("http://localhost:8080/swagger/doc.json"),
 		ginSwagger.DefaultModelsExpandDepth(-1)))
-	
-
 
 	router.Run(":8080")
 }
