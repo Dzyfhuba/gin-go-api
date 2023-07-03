@@ -1,19 +1,16 @@
 package main
 
 import (
+	"github.com/Dzyfhuba/gin-go-api/app/database"
 	"github.com/Dzyfhuba/gin-go-api/model"
 	"github.com/go-faker/faker/v4"
 	"github.com/oklog/ulid/v2"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
 )
 
 func main() {
-	db, err := gorm.Open(mysql.Open("ubaid:plmoknijb@tcp(localhost:3306)/gin_go_api"), &gorm.Config{})
+	db, err := database.db()
 
-	if err != nil {
-		panic(err)
-	}
+	
 	users := make([]model.User, 20)
 	for i := range users {
 		username := faker.Username()
