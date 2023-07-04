@@ -60,5 +60,5 @@ func main() {
 		ginSwagger.URL("http://localhost:8080/swagger/doc.json"),
 		ginSwagger.DefaultModelsExpandDepth(-1)))
 
-	route.Run(":8080")
+	route.Run(":3333")
 }

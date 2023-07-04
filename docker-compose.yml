@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:3333
+    command: bin/air
+  openapi:
+    image: swaggerapi/swagger-ui
+    ports:
+      - 8000:8080
+    volumes:
+      - ./openapi.yaml:/usr/share/nginx/html/openapi.yaml
