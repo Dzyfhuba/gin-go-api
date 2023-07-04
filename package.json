@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dev": "bin/air",
+    "migrate:fresh": "go run ./database/migrations",
+    "seed": "go run ./database/seeders",
+    "migrate:seed": "go run ./database/migrations && go run ./database/seeders"
+  }
+}

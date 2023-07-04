@@ -7,8 +7,8 @@ import (
 	_ "github.com/Dzyfhuba/gin-go-api/docs"
 	_ "github.com/Dzyfhuba/gin-go-api/model"
 	"github.com/gin-gonic/gin"
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
+	// swaggerFiles "github.com/swaggo/files"
+	// ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // album represents data about a record album.
@@ -46,16 +46,17 @@ func helloWorld(ctx *gin.Context) {
 }
 
 func main() {
-	router := gin.Default()
+	route := gin.New()
 
-	router.GET("/", helloWorld)
+	route.GET("/", helloWorld)
 
-	router.GET("/albums", getAlbums)
-	router.GET("/books", Controllers.BooksController)
+	route.GET("/albums", getAlbums)
+	route.GET("/books", controllers.BookController)
+	route.GET("/users", controllers.UserController().Index)
 
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler,
-		ginSwagger.URL("http://localhost:8080/swagger/doc.json"),
-		ginSwagger.DefaultModelsExpandDepth(-1)))
+	// route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler,
+	// 	ginSwagger.DefaultModelsExpandDepth(-1),
+	// ))
 
-	router.Run(":8080")
+	route.Run(":8080")
 }
