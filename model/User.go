@@ -3,7 +3,7 @@ package model
 import (
 	"time"
 
-	"github.com/Dzyfhuba/gin-go-api/types"
+	"gorm.io/gorm"
 )
 
 type User struct {
@@ -13,5 +13,5 @@ type User struct {
 	Password  string         `json:"password"`
 	CreatedAt time.Time      `json:"created_at" gorm:"autoCreateTime"`
 	UpdatedAt time.Time      `json:"updated_at" gorm:"autoUpdateTime"`
-	DeletedAt types.DeletedAt `json:"deleted_at" gorm:"<-:false"`
+	DeletedAt gorm.DeletedAt `json:"deleted_at" gorm:"<-:false"`
 }

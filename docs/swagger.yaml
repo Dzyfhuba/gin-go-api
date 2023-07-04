@@ -1,9 +1,34 @@
 basePath: /
 definitions:
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
   model.HelloWorld:
     properties:
       hello:
         example: world
+        type: string
+    type: object
+  model.User:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      email:
+        type: string
+      id:
+        type: string
+      password:
+        type: string
+      updated_at:
+        type: string
+      username:
         type: string
     type: object
 info:
@@ -21,4 +46,21 @@ paths:
             $ref: '#/definitions/model.HelloWorld'
       tags:
       - root
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Get user details
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+      summary: Get User
+      tags:
+      - Users
 swagger: "2.0"

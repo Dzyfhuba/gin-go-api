@@ -8,15 +8,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Get User
+// @Description Get user details
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Success 200 {array} model.User
+// @Router /users [get]
 func UserController() types.Resource {
 	return types.Resource{
-		// @Summary Get User
-		// @Description Get user details
-		// @Tags Users
-		// @Accept json
-		// @Produce json
-		// @Success 200 {object} model.User
-		// @Router /users [get]
 		Index: func(ctx *gin.Context) {
 			db := database.Connect()
 
