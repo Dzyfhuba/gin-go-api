@@ -7,9 +7,22 @@ services:
     ports:
       - 8080:3333
     command: bin/air
+    depends_on:
+      - mysql
+      - openapi
   openapi:
     image: swaggerapi/swagger-ui
     ports:
       - 8000:8080
     volumes:
       - ./openapi.yaml:/usr/share/nginx/html/openapi.yaml
+  mysql:
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=plmoknijb
+      - MYSQL_DATABASE=gin_go_api
+      - MYSQL_USER=ubaid
+      - MYSQL_PASSWORD=plmoknijb

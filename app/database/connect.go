@@ -6,7 +6,7 @@ import (
 )
 
 func Connect() (db *gorm.DB) {
-	db, err := gorm.Open(mysql.Open("ubaid:plmoknijb@tcp(localhost:3306)/gin_go_api?parseTime=true"), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open("root:plmoknijb@tcp(mysql:3306)/gin_go_api?parseTime=true"), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
