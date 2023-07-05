@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3333
 
 # Entrypoint command to run Go with bin/air
-CMD ["go", "run", "main.go"]
+CMD ["bin/air"]

@@ -1,15 +1,5 @@
 version: '3'
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 8080:3333
-    command: bin/air
-    depends_on:
-      - mysql
-      - openapi
   openapi:
     image: swaggerapi/swagger-ui
     ports:
@@ -26,3 +16,26 @@ services:
       - MYSQL_DATABASE=gin_go_api
       - MYSQL_USER=ubaid
       - MYSQL_PASSWORD=plmoknijb
+    volumes:
+      - ./data:/var/lib/mysql
+    
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:3333
+    command: bin/air
+    depends_on:
+      - mysql
+      - openapi
+  backup:
+    image: mysql
+    command: sh -c '/backup.sh'
+    depends_on:
+      - mysql
+    volumes:
+      - ./backup:/backup
+      - ./backup.sh:/backup.sh
+
+  
