@@ -30,6 +30,10 @@ definitions:
         type: string
       username:
         type: string
+    required:
+    - email
+    - password
+    - username
     type: object
 info:
   contact: {}
@@ -50,9 +54,6 @@ paths:
     get:
       consumes:
       - application/json
-      description: Get user details
-      produces:
-      - application/json
       responses:
         "200":
           description: OK
@@ -60,7 +61,34 @@ paths:
             items:
               $ref: '#/definitions/model.User'
             type: array
-      summary: Get User
+      summary: Get All Users
       tags:
-      - Users
+      - users
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: Username
+        in: formData
+        name: username
+        required: true
+        type: string
+      - description: Email
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: Password
+        in: formData
+        name: password
+        required: true
+        type: string
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: Store New Users
+      tags:
+      - users
 swagger: "2.0"

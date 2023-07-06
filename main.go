@@ -55,9 +55,9 @@ func main() {
 	route.GET("/albums", getAlbums)
 	route.GET("/books", controllers.BookController)
 	route.GET("/users", controllers.UserController().Index)
+	route.POST("/users", controllers.UserController().Store)
 
 	route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler,
-		ginSwagger.URL("http://localhost:8080/swagger/doc.json"),
 		ginSwagger.DefaultModelsExpandDepth(-1)))
 
 	route.Run(":3333")

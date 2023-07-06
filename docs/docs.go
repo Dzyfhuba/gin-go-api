@@ -37,17 +37,13 @@ const docTemplate = `{
         },
         "/users": {
             "get": {
-                "description": "Get user details",
                 "consumes": [
                     "application/json"
                 ],
-                "produces": [
-                    "application/json"
-                ],
                 "tags": [
-                    "Users"
+                    "users"
                 ],
-                "summary": "Get User",
+                "summary": "Get All Users",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -56,6 +52,46 @@ const docTemplate = `{
                             "items": {
                                 "$ref": "#/definitions/model.User"
                             }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Store New Users",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "email",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Password",
+                        "name": "password",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
                         }
                     }
                 }
@@ -86,6 +122,11 @@ const docTemplate = `{
         },
         "model.User": {
             "type": "object",
+            "required": [
+                "email",
+                "password",
+                "username"
+            ],
             "properties": {
                 "created_at": {
                     "type": "string"

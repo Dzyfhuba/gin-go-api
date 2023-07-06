@@ -1,11 +1,5 @@
 version: '3'
 services:
-  openapi:
-    image: swaggerapi/swagger-ui
-    ports:
-      - 8000:8080
-    volumes:
-      - ./openapi.yaml:/usr/share/nginx/html/openapi.yaml
   mysql:
     image: mysql
     restart: always
